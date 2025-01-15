@@ -8,7 +8,7 @@
 
 - Token Name (Done) & - Token Address (Done)
 - Age in days/ Genesis Date (Done)
-- Liquidity (Done) & Market Cap (Done)
+- Market Cap (Done)
 - Holders Count (Done)
 - 24h TXs (Done)
 - 24h Volume (Done)
@@ -19,36 +19,22 @@
 
 ## We are getting:
 
-API ENDPOINT: https://api.coingecko.com/api/v3/coins/markets
-NECESSARY DATA: name, market_cap
+RATE LIMIT INFO:
 
-API ENDPOINT: https://api.coingecko.com/api/v3/coins/{id}/market_chart
-NECESSARY DATA: market_caps, prices, total_volumes(extra)
-
-API ENDPOINT: https://api.coingecko.com/api/v3/simple/price
-NECESSARY DATA: usd_24h_vol
+API ENDPOINT: https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&price_change_percentage=1h,24h,7d
+NECESSARY DATA: id(string), current_price(number), image(string), market_cap(number),total_volume(number. This is for 24h), name(string), price_change_percentage_1h_in_currency(number), price_change_percentage_24h_in_currency(number), price_change_percentage_7d_in_currency(number)
 
 API ENDPOINT: https://api.coingecko.com/api/v3/coins/{id}
-NECESSARY DATA: genesis_date(for calculating age)
+NECESSARY DATA: genesis_date(for calculating age), coin_id {5 daily -> take id from above. Next day, move to next 5}
 
-API ENDPOINT: https://api.dexscreener.com/latest/dex/search
-NECESSARY DATA: liquidity
+API ENDPOINT: (CoinMarketCap ID Map) https://pro-api.coinmarketcap.com/v1/cryptocurrency/map
+NECESSARY DATA: id(number), name(string), symbol(BTC)
 
-API ENDPOINT: https://pro-api.coinmarketcap.com/v4/dex/listings/quotes
-NECESSARY DATA: num_transactions_24h
+API ENDPOINT: (OHLCV Historical v2) /v2/cryptocurrency/ohlcv/historical
+NECESSARY DATA: id(number), 1m%(float)
+FORMULA: 1-minute Percentage Change=((close−open)/open)∗100
 
-API ENDPOINT: https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest
-NECESSARY DATA: percent_change_1h, price
-
-API ENDPOINT: https://pro-api.coinmarketcap.com/v1/cryptocurrency/map
-NECESSARY DATA: token_address
-
-API ENDPOINT:
-curl -X GET "https://pro-api.coinmarketcap.com/v4/dex/pairs/ohlcv/historical?time_period=1m&contract_address=0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640&network_slug=ethereum&time_start=2025-01-01T00:00:00Z&time_end=2025-01-02T00:00:00Z&interval=1m&skip_invalid=true" \
--H "X-CMC_PRO_API_KEY: be4bfe54-9ab3-45b3-8e40-14d33116a1b1" \
--H "Accept: application/json"
-NECESSARY DATA: 1m%
-
+LOOKS EXTRA FOR NOW
 API ENDPOINT:
 curl -X GET "https://pro-api.coinmarketcap.com/v4/dex/pairs/ohlcv/latest?contract_address=0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640&network_slug=ethereum&time_period=daily&time_start=2020-01-01&time_end=2020-01-10&count=10&interval=daily&aux=24h_no_of_buys,24h_no_of_sells,holders" \
 -H "X-CMC_PRO_API_KEY: be4bfe54-9ab3-45b3-8e40-14d33116a1b1" \
@@ -56,69 +42,20 @@ curl -X GET "https://pro-api.coinmarketcap.com/v4/dex/pairs/ohlcv/latest?contrac
 -H "Content-Type: application/json"
 NECESSARY DATA: holders
 
+LOOKS EXTRA FOR NOW
 API ENDPOINT:
 curl -X GET "https://pro-api.coinmarketcap.com/v4/dex/pairs/ohlcv/historical?time_period=5m&contract_address=0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640&network_slug=ethereum&time_start=2025-01-01T00:00:00Z&time_end=2025-01-02T00:00:00Z&interval=5m&skip_invalid=true" \
 -H "X-CMC_PRO_API_KEY: be4bfe54-9ab3-45b3-8e40-14d33116a1b1" \
 -H "Accept: application/json"
 NECESSARY DATA: 5m%
 
-## 1. Data Required For Trending Section
-
-- Token Name (Done) & - Token Address (Done)
-- Age in days/ Genesis Date (Done)
-- Liquidity (Done) & Market Cap (Done)
-- Holders Count (Done)
-- 24h TXs (Done)
-- 24h Volume (Done)
-- Price (Done)
-- 1m% (Done)
-- 5m% (Done)
-- 1h% (Done)
-
-## We are getting:
-
-API ENDPOINT: https://api.coingecko.com/api/v3/coins/markets
-NECESSARY DATA: name, market_cap
-
-API ENDPOINT: https://api.coingecko.com/api/v3/coins/{id}/market_chart
-NECESSARY DATA: market_caps, prices, total_volumes(extra)
-
-API ENDPOINT: https://api.coingecko.com/api/v3/simple/price
-NECESSARY DATA: usd_24h_vol
-
-API ENDPOINT: https://api.coingecko.com/api/v3/coins/{id}
-NECESSARY DATA: genesis_date(for calculating age)
-
-API ENDPOINT: https://api.dexscreener.com/latest/dex/search
-NECESSARY DATA: liquidity
-
-API ENDPOINT: https://pro-api.coinmarketcap.com/v4/dex/listings/quotes
-NECESSARY DATA: num_transactions_24h
-
-API ENDPOINT: https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest
-NECESSARY DATA: percent_change_1h, price
-
-API ENDPOINT: https://pro-api.coinmarketcap.com/v1/cryptocurrency/map
-NECESSARY DATA: token_address
-
+LOOKS EXTRA FOR NOW
 API ENDPOINT:
 curl -X GET "https://pro-api.coinmarketcap.com/v4/dex/pairs/ohlcv/historical?time_period=1m&contract_address=0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640&network_slug=ethereum&time_start=2025-01-01T00:00:00Z&time_end=2025-01-02T00:00:00Z&interval=1m&skip_invalid=true" \
 -H "X-CMC_PRO_API_KEY: be4bfe54-9ab3-45b3-8e40-14d33116a1b1" \
 -H "Accept: application/json"
 NECESSARY DATA: 1m%
-
-API ENDPOINT:
-curl -X GET "https://pro-api.coinmarketcap.com/v4/dex/pairs/ohlcv/latest?contract_address=0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640&network_slug=ethereum&time_period=daily&time_start=2020-01-01&time_end=2020-01-10&count=10&interval=daily&aux=24h_no_of_buys,24h_no_of_sells,holders" \
--H "X-CMC_PRO_API_KEY: be4bfe54-9ab3-45b3-8e40-14d33116a1b1" \
--H "Accept: application/json" \
--H "Content-Type: application/json"
-NECESSARY DATA: holders
-
-API ENDPOINT:
-curl -X GET "https://pro-api.coinmarketcap.com/v4/dex/pairs/ohlcv/historical?time_period=5m&contract_address=0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640&network_slug=ethereum&time_start=2025-01-01T00:00:00Z&time_end=2025-01-02T00:00:00Z&interval=5m&skip_invalid=true" \
--H "X-CMC_PRO_API_KEY: be4bfe54-9ab3-45b3-8e40-14d33116a1b1" \
--H "Accept: application/json"
-NECESSARY DATA: 5m%
+FORMULA: 1-minute Percentage Change=((close−open)/open)∗100
 
 ## 2. Data Required For Discover Section (TRON BLOCKCHAIN)
 

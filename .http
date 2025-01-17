@@ -1,1 +1,6 @@
-GET https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=30 HTTP/1.1
+
+GET http://localhost:3000?chain=sol
+
+
+# For sending trending coins data to firebase
+# GET http://localhost:3000?chain=sol

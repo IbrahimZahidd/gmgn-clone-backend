@@ -22,14 +22,16 @@
 RATE LIMIT INFO:
 
 API ENDPOINT: https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&price_change_percentage=1h,24h,7d
-NECESSARY DATA: id(string), current_price(number), image(string), market_cap(number),total_volume(number. This is for 24h), name(string), price_change_percentage_1h_in_currency(number), price_change_percentage_24h_in_currency(number), price_change_percentage_7d_in_currency(number)
+NECESSARY DATA: id(string), name(string), image(string),current_price(number), market_cap(number),total_volume(number. This is for 24h), price_change_percentage_1h_in_currency(number), price_change_percentage_24h_in_currency(number), price_change_percentage_7d_in_currency(number)
 
 API ENDPOINT: https://api.coingecko.com/api/v3/coins/{id}
-NECESSARY DATA: genesis_date(for calculating age), coin_id {5 daily -> take id from above. Next day, move to next 5}
+NECESSARY DATA: genesis_date(for calculating age in days), coin_id {5 daily -> take id from above. Next day, move to next 5}
 
+LOOKS EXTRA FOR NOW
 API ENDPOINT: (CoinMarketCap ID Map) https://pro-api.coinmarketcap.com/v1/cryptocurrency/map
-NECESSARY DATA: id(number), name(string), symbol(BTC)
+NECESSARY DATA: id(number), name(string)
 
+LOOKS EXTRA FOR NOW
 API ENDPOINT: (OHLCV Historical v2) /v2/cryptocurrency/ohlcv/historical
 NECESSARY DATA: id(number), 1m%(float)
 FORMULA: 1-minute Percentage Change=((close−open)/open)∗100

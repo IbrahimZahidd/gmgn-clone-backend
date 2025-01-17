@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { SolTrendingModule } from './sol-trending/sol-trending.module';
+import { SolTrending2Module } from './sol-trending2/sol-trending2.module';
+import { FirebaseModule } from './firebase/firebase.module';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [SolTrendingModule, SolTrending2Module, FirebaseModule],
+  controllers: [], // Remove AppController
+  providers: [], // Remove AppService
 })
 export class AppModule {}
